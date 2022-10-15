@@ -35,3 +35,34 @@ code {
 	color:#ff8c00;
 	padding: 5rem 0;
 }
+/*Navbar component starts*/
+.navbar{
+	top: 0; left: 0; right: 0;
+	background:rgb(223, 103, 47); 
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	text-transform: uppercase;
+	justify-content: space-between;
+	padding: 2rem 3%;
+	height: 50px;
+    border-bottom-left-radius: 50%;  
+	
+}
+.navbar .App-logo {
+  border-radius: 50%;
+  height: 150px;
+}
+.navbar .navbar-inner a{
+	color: rgb(206, 187, 187);
+	font-size: 1.5rem;
+	margin:0 .8rem;
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: all 0.2s ease 0s;
+}
+.navbar .navbar-inner a:hover{
+	color: green;
+}
+
+/* Navbar component ends*/
