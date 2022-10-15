@@ -38,7 +38,7 @@ code {
 /*Navbar component starts*/
 .navbar{
 	top: 0; left: 0; right: 0;
-	background:rgb(223, 103, 47); 
+	background:rgb(216, 103, 47); 
 	z-index: 1000;
 	display: flex;
 	align-items: center;
