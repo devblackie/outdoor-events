@@ -1,51 +1,46 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ show update destroy ]
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unproccessable_entity_response
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
-  # GET /events
-  def index
-    @events = Event.all
 
-    render json: @events
+  def index 
+      r = Event.all
+      render json: r
   end
 
-  # GET /events/1
   def show
-    render json: @event
+      r = Event.find(params[:id])
   end
 
-  # POST /events
   def create
-    @event = Event.new(event_params)
-
-    if @event.save
-      render json: @event, status: :created, location: @event
-    else
-      render json: @event.errors, status: :unprocessable_entity
-    end
+      event = Event.create!(event_params)
+      render json: event,status: :ok
   end
 
-  # PATCH/PUT /events/1
   def update
-    if @event.update(event_params)
-      render json: @event
-    else
-      render json: @event.errors, status: :unprocessable_entity
-    end
+      event = Event.find_by(id: params[:id])
+      event.update(event_params)
+      render json: event
   end
 
-  # DELETE /events/1
   def destroy
-    @event.destroy
+      event = Event.find(params[:id])
+      event.destroy
+      head :no_content
   end
+
+  
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
+  def event_params
+      params.permit(:image_url, :location, :price, :user_id)
+  end
 
-    # Only allow a list of trusted parameters through.
-    def event_params
-      params.require(:event).permit(:image_url, :location, :price, :user_id)
+  def render_not_found_response
+      render json: { error: "User not found" }, status: :not_found
+  end
+
+  def render_unproccessable_entity_response(invalid)
+      render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
 end
