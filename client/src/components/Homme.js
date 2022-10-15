@@ -1,5 +1,5 @@
 import React from 'react';
-// import homePicture from './Assets/Team-Building-Classic.jpg';
+import homePicture from './Assets/Team-Building-Classic.jpg';
 import { Link } from 'react-router-dom';
 
 
@@ -8,9 +8,7 @@ export default function Homme() {
 
     
     return (
-        <div className="home" 
-        // style={{backgroundImage:`url(${homePicture})`,backgroundSize:"cover"}}
-        >
+        <div className="home" style={{backgroundImage:`url(${homePicture})`,backgroundSize:"cover"}}>
            
             <div className="content">
                 <h3>Fitness bonding Adventure</h3>
