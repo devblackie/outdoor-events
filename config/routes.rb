@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :bookings
   resources :users
   get 'gem/install'
   get 'gem/faker'
