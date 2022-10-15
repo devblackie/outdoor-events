@@ -1,8 +1,8 @@
 import React,{ useState, useEffect } from "react";
-import Header from "./components/Header";
 import Homme from "./components/Homme";
 import './App.css';
 import { Routes,Route,Link } from 'react-router-dom';
+import NavBar from "./components/NavBar";
 
 
 
@@ -18,7 +18,7 @@ function App() {
 
   return (
       <div className="App">
-        <h1>Page Count: {count}</h1>
+        <NavBar />
         <Routes>
           <Route path="/" element={<Homme />} />
           {/* <Route path="about" element={<About />} /> */}
