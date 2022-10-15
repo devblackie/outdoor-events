@@ -1,2 +1,6 @@
 class Event < ApplicationRecord
-end
+    belongs_to :user
+ 
+    validates :image_url ,:location ,:price , presence: true
+ 
+ end
