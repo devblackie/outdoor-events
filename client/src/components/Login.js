@@ -30,7 +30,7 @@ function Login({ onLogin }) {
       setIsLoading(false);
       if (r.ok) {
         r.json().then((user) => onLogin(user));
-        navigate("/home");
+        navigate("/homme");
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -42,7 +42,7 @@ function Login({ onLogin }) {
       <div className="w-1/2">
         <img
         className="h-screen w-full"
-          src="https://github.com/Elvis-Munene/Abojani-Academy-web-app/blob/main-page/assets/images/main-image-signup.png?raw=true"
+          src=" "
           alt=""
         />
       </div>
@@ -57,7 +57,7 @@ function Login({ onLogin }) {
               fontSize: "37px",
             }}
           >
-            Abojani
+            Blackie
           </span>{" "}
           <span
             style={{
@@ -68,7 +68,7 @@ function Login({ onLogin }) {
               fontSize: "37px",
             }}
           >
-            Academy
+            Outdoor
           </span>
         </h3>
         <div

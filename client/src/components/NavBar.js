@@ -49,7 +49,7 @@ export default function NavBar({ user, setUser }) {
                 <a href="#">
                   <Link className="nav-link " to='/gallery'>Gallery</Link>
                   <Link className="nav-link" to="/login">Login</Link>
-                  <Link className="nav-link " to='/signup'>Add Event</Link>
+                  <Link className="nav-link " to="/signup">SignUp</Link>
                 </a>
             
             </div>
