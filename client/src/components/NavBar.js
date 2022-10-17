@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-export default function NavBar() {
+export default function NavBar({ user, setUser }) {
 
     const logo = 'https://photos.google.com/photo/AF1QipMxfUTA_WSCyxDtRRoZHTL23VR5L2nA-zqrwNu-'
 
@@ -32,31 +32,14 @@ export default function NavBar() {
               </ul>
             ) : (
               <ul>
-                <li className="nav-item  mx-3">
-                  <p href="" className=" ">
-                    <Link to="/" style={{ textDecoration: "none" }}>
-                      Home{" "}
-                    </Link>
-                  </p>
-                </li>
                 <li>
                   <a href="#products" className=" ">
-                    <Link to="/event" style={{ textDecoration: "none" }}>
-                      Events
-                    </Link>
-                  </a>
-                </li>
-                <li>
-                  <a href="#services" className="">
-                    <Link to="/login" style={{ textDecoration: "none" }}>
-                      Login
-                    </Link>
+                    <Link to="/event">Events</Link>
                   </a>
                 </li>
                 <li>
                   <Link to="/signup" style={{ textDecoration: "none" }}>
-                    <a href="#contact" className=" " >Post Event </a>
-                  </Link>
+                    <a href="#contact" className=" " >Post Event </a></Link>
                 </li>
               </ul>
             )}
@@ -65,7 +48,8 @@ export default function NavBar() {
                 </a>
                 <a href="#">
                   <Link className="nav-link " to='/gallery'>Gallery</Link>
-                  <Link className="nav-link " to='/addEvent'>Add Event</Link>
+                  <Link className="nav-link" to="/login">Login</Link>
+                  <Link className="nav-link " to='/signup'>Add Event</Link>
                 </a>
             
             </div>

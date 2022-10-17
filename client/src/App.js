@@ -3,26 +3,35 @@ import Homme from "./components/Homme";
 import './App.css';
 import { Routes,Route,Link } from 'react-router-dom';
 import NavBar from "./components/NavBar";
+import Login from "./components/Login";
 
 
 
 function App() {
-  
-  const [count, setCount] = useState(0);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
   }, []);
 
   return (
       <div className="App">
-        <NavBar />
-        <Routes>
+        <NavBar user={user} setUser={setUser} />
+        {user ? (
+          <Routes>
+            <Route path="/" element={<></>} />
+          </Routes>
+        ):(
+          <Routes>
           <Route path="/" element={<Homme />} />
-          {/* <Route path="about" element={<About />} /> */}
+          <Route path="login" element={<Login setUser={setUser} />} />
         </Routes>
+        )}
+        
         
       
 

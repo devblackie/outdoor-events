@@ -1,83 +1,103 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function SignUp() {
+
+function SignupForm({ onLogin }) {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [error, setError] = useState();
-  const [success, setSuccess] = useState()
-  const userToDB = { username, password, passwordConfirmation };
-  
-
-  const errormessage = error?.map((error) => {
-    return (
-      <>
-        <li className="text-danger pt-3">{error}</li>
-      </>
-    );
-  });
+  const [errors, setErrors] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
-
+    // setErrors([]);
     fetch("/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(userToDB),
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+        password_confirmation: passwordConfirmation,
+      }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => setSuccess((user.success)));
-        setUsername('')
-        setPassword('')
-        setPasswordConfirmation('')
+        r.json().then((user) => onLogin(user));
+        navigate("/home");
       } else {
-        r.json().then((error) => setError((error.errors)));
+        r.json().then((err) => setErrors(err.errors));
       }
     });
   }
+
   return (
-    <div>
-      <section className=" ">
-        <h3 style={{ fontWeight: "400", color: "#0D7CAC" }} className="text-center">CREATE AN ACCOUNT TO POST AN EVENT </h3>
-        <div className=" ">
-          <div className=" ">
-            <div className=" ">
-              <img src=" " className="img-fluid" alt="Sample" />
-            </div>
-            <div className=" ">
-              <div className=" ">
-                <p className=" ">HAVE AN ACCOUNT{" "}
-                  <span>
-                    <Link style={colorTxt} to="/login">LOGIN</Link>
-                  </span>
-                </p>
-              </div>
+    <div className="h-full w-full flex signup-form-div-one">
+      <div className="w-2/4">
+        <img className="w-screen h-screen" src={pic2} alt="abojani" />
+      </div>
 
-              <form>
-                <div className=" ">
-                  <input onChange={(e) => setUsername(e.target.value)} type="text" id="form3Example3" value={username} className=" " placeholder="username" />
-                </div>
-
-                <div className=" ">
-                  <input onChange={(e) => setPassword(e.target.value)} type="password" value={password} id="form3Example4" className=" " placeholder="password" />
-                </div>
-
-                <div className=" ">
-                  <input type="password" id="form3Example4" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} className=" " placeholder="confirm password" />
-                </div>
-                <div className="text-center text-lg-start">
-                <p className="text-success">{success}</p>
-                  <button onClick={handleSubmit} type="button" className=" " >Sign Up</button>
-                  <ol>{errormessage}</ol>
-                </div>
-              </form>
-            </div>
+      <div className="signup-form-div-two w-2/4">
+        <form onSubmit={handleSubmit} className="signup-form">
+          {errors.map((err) => (
+            <p key={err}>{err}</p>
+          ))}
+          <div>
+            <input
+              placeholder="Username"
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
           </div>
-        </div>
-      </section>
+
+          <div>
+            <input
+              placeholder="Email"
+              type="text"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <input
+              placeholder="Password"
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
+            />
+          </div>
+
+          <div>
+            <input
+              placeholder="Confirm password"
+              type="password"
+              id="password_confirmation"
+              value={passwordConfirmation}
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
+              autoComplete="current-password"
+            />
+          </div>
+
+          <button className="signup-form-btn" type="submit">
+            Signup
+          </button>
+          <p className="text-center mt-8 text-[#fff]">
+            Already have an account? <Link to="/login">Login</Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 }
+
+export default SignupForm;

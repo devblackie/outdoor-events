@@ -66,3 +66,53 @@ code {
 }
 
 /* Navbar component ends*/
+/* Book component */
+.Book {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+	width: 30rem;
+}
+.Book .image{
+	flex: 1 1 40rem;
+}
+.Book .image img{
+	width: 100%;
+}
+.Book form{
+	width: 40px;
+	flex: 1 1 40rem;
+	padding: 2rem;
+	box-shadow: 0 1rem 2rem #001219;
+	border-radius: .5rem;
+	background: #001219;
+	color: orangered;
+}
+.Book form .form-input{
+	padding: .1rem 0rem;
+}
+.Book form .form-input input{
+	width: 30%;
+	border: 2px solid #f5f8f9;
+	border-radius: .5rem;
+	font-size: 1rem;
+	color: orangered;
+	text-transform: none;
+}
+.Book form.form-input p{
+	color: red;
+}
+
+.Book form .form-input button{
+	border-radius: .7rem;
+	color: #001e2a;
+	background: #ff8c00;
+	padding: 1rem;
+	text-transform: bold;
+}
+.Book form .form-input button:hover{
+	background: #f1f2f3;
+}
+
+
+/* Book component */
